@@ -1,0 +1,7 @@
+POST  http://localhost:3000/routes/auth/staffs
+Content-Type: application/json
+
+{
+  staff_id: "345921023",
+  password: "hello"
+}
