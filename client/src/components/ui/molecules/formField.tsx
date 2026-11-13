@@ -5,9 +5,10 @@ import {
   ViewStyle,
   type TextInputProps,
 } from "react-native";
-import AppText from "./app-text";
+import { AppText } from '@/components/ui/atoms/app-text';
+import { Input } from '@/components/ui/atoms/textInput';
 import { theme } from "@/theme/theme"
-import { Icon } from '@/components/ui/icon'; 
+import { Icon , type IconName } from '@/components/ui/atoms/icon'; 
 import { useState } from "react";
 
 type InputProps = TextInputProps & {
@@ -16,22 +17,26 @@ type InputProps = TextInputProps & {
   value?: string;
   onChangeText?: (text: string) => void;
   containerStyle?: ViewStyle;
-  isPassword?: boolean;
-  errorExist?: boolean;
+  error?: boolean;
   label?: string;
+  icon?: IconName;
+  iconPosition?: string;
+  iconVariant?: 'outline' | 'solid' | 'mini' | 'micro';
 };
 
-export default function Input({
+export const FormField = ({
   placeholder,
   errorMessage,
   value,
   onChangeText,
   label,
   containerStyle,
-  isPassword,
-  errorExist,
+  error,
+  icon,
+  iconPosition,
+  iconVariant,
   ...props
-}: InputProps) {
+}: InputProps) => {
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -45,17 +50,19 @@ export default function Input({
       }}
     >
       {label ? ( <AppText preset="body1">{label}</AppText> ) : null}
-      <TextInput
-        style={[style.input, isFilled ? (isFocused ? style.focusedFilled : style.unfocusedFilled) : (isFocused ? style.focusedDefault : null)]}
+
+      <Input
+        {...props}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        secureTextEntry={isPassword ? true : false}
+        error = {error}
+        icon = {icon}
+        iconPosition= {iconPosition}
+        iconVariant = {iconVariant}
       />
       <View style={{height:20}}>
-        {errorExist ? (
+        {error ? (
           <View style={style.errorMessageContainer}>
             <Icon name="ExclamationTriangleIcon" variant="mini" color={theme.colors.alert} size={24} />
             <AppText preset="body2" style={style.errorMessage}>{errorMessage}</AppText>
@@ -64,7 +71,7 @@ export default function Input({
       </View>
     </View>
   );
-}
+};
 
 const style = StyleSheet.create({
   container: {},
@@ -98,3 +105,5 @@ const style = StyleSheet.create({
     color: theme.colors.alert,
   }
 });
+
+export default FormField;

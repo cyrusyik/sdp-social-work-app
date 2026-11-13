@@ -1,7 +1,7 @@
 import { ActivityIndicator, Pressable, type PressableProps } from 'react-native';
 
-import { AppText } from '@/components/ui/app-text';
-import { Icon, type IconName } from '@/components/ui/icon';
+import { AppText } from '@/components/ui/atoms/app-text';
+import { Icon, type IconName } from '@/components/ui/atoms/icon';
 import { theme } from '@/theme/theme';
 
 type ButtonProps = PressableProps & {
@@ -11,10 +11,10 @@ type ButtonProps = PressableProps & {
   iconPosition?: 'left' | 'right';
   loading?: boolean;
   fullWidth?: boolean;
-  buttonVariant?: 'outline' | 'solid' | 'mini' | 'micro';
+  iconVariant?: 'outline' | 'solid' | 'mini' | 'micro';
 };
 
-export function Button({ label, variant = 'primary', icon, iconPosition = 'left', loading = false, fullWidth = true, disabled, style, buttonVariant, ...props }: ButtonProps) {
+export function Button({ label, variant = 'primary', icon, iconPosition = 'left', loading = false, fullWidth = true, disabled, style, iconVariant, ...props }: ButtonProps) {
   
   const isDisabled = disabled || loading;
   const buttonIcon = loading ? null : icon;
@@ -46,11 +46,11 @@ export function Button({ label, variant = 'primary', icon, iconPosition = 'left'
         style as object,
       ]}
       {...props}>
-      {buttonIcon && iconPosition === 'left' ? <Icon name={buttonIcon} color={iconColor} variant={buttonVariant} size={24} /> : null}
+      {buttonIcon && iconPosition === 'left' ? <Icon name={buttonIcon} color={iconColor} variant={iconVariant} size={24} /> : null}
       <AppText preset={fontPreset} style={{color: iconColor, marginBlock: textMarginBlock, textDecorationLine: textDecorationLine}}>
         {label}
       </AppText>
-      {buttonIcon && iconPosition === 'right' ? <Icon name={buttonIcon} color={iconColor} variant={buttonVariant} size={24} /> : null}
+      {buttonIcon && iconPosition === 'right' ? <Icon name={buttonIcon} color={iconColor} variant={iconVariant} size={24} /> : null}
     </Pressable>
   );
 }

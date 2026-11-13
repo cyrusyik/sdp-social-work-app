@@ -1,34 +1,32 @@
 import { View, StyleSheet } from "react-native";
-import Input from "../../../components/ui/input";
-import CustomText from "../../../components/ui/app-text";
+import Input from "@/components/ui/atoms/textInput";
+import { AppText } from "@/components/ui/atoms/app-text";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Screen } from "@/components/ui/screen";
+import { Button } from "@/components/ui/atoms/button";
+import { Screen } from "@/components/ui/atoms/screen";
+import { FormField } from "@/components/ui/molecules/formField";
+import { PasswordInput } from "@/components/ui/molecules/passwordInput";
 
 export default function LoginScreen() {
   const [staffId, setStaffId] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <Screen scroll={false} contentStyle={{ justifyContent: 'center' }}>
+    <Screen scroll={false} contentStyle={{ justifyContent: "center" }}>
       <View>
         <View style={styles.inputFormContainer}>
-          <CustomText preset="h1">登入</CustomText>
-          <Input
+          <AppText preset="h1">登入</AppText>
+          <FormField
             id="staffID"
             placeholder="職員編號"
             label="職員編號"
             errorMessage="請輸入有效職員編號"
             value={staffId}
             onChangeText={setStaffId}
-            isPassword={false}
-            errorExist={false}
+            error={false}
           />
-          <Input
+          <PasswordInput
             id="password"
-            placeholder="帳戶密碼"
-            label="帳戶密碼"
-            isPassword={true}
-            errorExist={false}
+            error={false}
             errorMessage="錯誤密碼"
             value={password}
             onChangeText={setPassword}
@@ -36,7 +34,13 @@ export default function LoginScreen() {
           <View>
             <Button label="忘記密碼" variant="inline"></Button>
           </View>
-          <Button label="登入" variant="primary" icon="ArrowLeftEndOnRectangleIcon" iconPosition="left" buttonVariant="micro" />
+          <Button
+            label="登入"
+            variant="primary"
+            icon="ArrowLeftEndOnRectangleIcon"
+            iconPosition="left"
+            iconVariant="micro"
+          />
         </View>
       </View>
     </Screen>

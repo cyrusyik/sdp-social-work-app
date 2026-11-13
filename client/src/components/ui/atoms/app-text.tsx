@@ -121,4 +121,4 @@ export const AppText = ({
   );
 };
 
-export default AppText;
+export default Text;
