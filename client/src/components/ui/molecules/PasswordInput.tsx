@@ -6,7 +6,7 @@ import {
   type TextInputProps,
 } from "react-native";
 import { AppText } from "@/components/ui/atoms/AppText";
-import { IconButton } from "@/components/ui/atoms/iconButton";
+import { IconButton } from "@/components/ui/atoms/IconButton";
 import { theme } from "@/theme/theme";
 import { Icon, type IconName } from "@/components/ui/atoms/Icon";
 import { useState } from "react";

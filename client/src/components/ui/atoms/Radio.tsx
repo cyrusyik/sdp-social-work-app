@@ -1,4 +1,4 @@
-// components/ui/atoms/radio.tsx
+// components/ui/atoms/Radio.tsx
 import {
   Pressable,
   StyleSheet,

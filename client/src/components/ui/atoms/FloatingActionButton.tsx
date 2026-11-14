@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "@/components/ui/atoms/iconButton";
+import { IconButton } from "@/components/ui/atoms/IconButton";
 
 export const FAB = () => {
   return (
