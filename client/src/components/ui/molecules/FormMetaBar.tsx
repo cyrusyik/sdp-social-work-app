@@ -1,19 +1,26 @@
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { AppText } from "@/components/ui/atoms/AppText";
 import { theme } from "@/theme/theme";
 
-export const FormMetaBar = () => {
+export type FormMetaBarItem = {
+  label: string;
+  value: string;
+}
+
+type FormMetaBarProps = {
+  items: FormMetaBarItem[];
+  style?: StyleProp<ViewStyle>;
+}
+
+export const FormMetaBar = ({ items, style}: FormMetaBarProps) => {
   return (
     <View style={styles.container}>
-      <View style={styles.item}>
-        <AppText preset="tagline" style={styles.label}>已選擇</AppText>
-        <AppText preset="tagline" style={styles.value}>「實地探訪督導–事前預備工作紙」</AppText>
-      </View>
-
-      <View style={styles.item}>
-        <AppText preset="tagline" style={styles.label}>案主</AppText>
-        <AppText preset="tagline" style={styles.value}>陳大文 CHAN T.M.</AppText>
-      </View>
+      {items.filter((item) => !!item.value).map((item)=>(
+        <View key={item.label} style={styles.item}>
+          <AppText preset="tagline" style={styles.label}>{item.label}</AppText>
+          <AppText preset="tagline" style={styles.value}>{item.value}</AppText>
+        </View>
+      ))}
     </View>
   );
 };
