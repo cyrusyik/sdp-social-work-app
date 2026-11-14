@@ -1,6 +1,13 @@
 // components/ui/atoms/radio.tsx
-import { Pressable, StyleSheet, View, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
-import { AppText } from "@/components/ui/atoms/app-text";
+import {
+  Pressable,
+  StyleSheet,
+  View,
+  type PressableProps,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native";
+import { AppText } from "@/components/ui/atoms/AppText";
 import { theme } from "@/theme/theme";
 
 type RadioProps = Omit<PressableProps, "style" | "children"> & {

@@ -1,4 +1,4 @@
-import { Chip } from "@/components/ui/atoms/chip";
+import { Chip } from "@/components/ui/atoms/Chip";
 import { useState } from "react";
 import { View , StyleSheet} from "react-native";
 import { theme } from "@/theme/theme";

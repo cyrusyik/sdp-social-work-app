@@ -1,6 +1,5 @@
-// components/ui/atoms/chip.tsx
 import { Pressable, StyleSheet, type PressableProps, type StyleProp, type ViewStyle } from "react-native";
-import { AppText } from "@/components/ui/atoms/app-text";
+import { AppText } from "@/components/ui/atoms/AppText";
 import { theme } from "@/theme/theme";
 
 type ChipProps = Omit<PressableProps, "style" | "children"> & {
@@ -44,12 +43,12 @@ const styles = StyleSheet.create({
   base: {
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "flex-start",       // hug content instead of stretching in a column parent
+    alignSelf: "flex-start",
     gap: theme.spacing.xs,
     borderWidth: 1,
-    borderRadius: 999,             // pill
+    borderRadius: 999,
     height: 36,
-    paddingHorizontal: theme.spacing.md
+    paddingHorizontal: theme.spacing.md,
   },
   unselected: {
     backgroundColor: theme.colors.white,
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
     color: theme.colors.primaryText,
   },
   disabled: { opacity: 0.4 },
-  label: { fontSize: theme.typography.body2 },
   selected: {
     backgroundColor: theme.colors.primary,
     borderColor: theme.colors.primary,

@@ -5,10 +5,10 @@ import {
   ViewStyle,
   type TextInputProps,
 } from "react-native";
-import { AppText } from '@/components/ui/atoms/app-text';
+import { AppText } from "@/components/ui/atoms/AppText";
 import { IconButton } from "@/components/ui/atoms/iconButton";
-import { theme } from "@/theme/theme"
-import { Icon , type IconName } from '@/components/ui/atoms/icon'; 
+import { theme } from "@/theme/theme";
+import { Icon, type IconName } from "@/components/ui/atoms/Icon";
 import { useState } from "react";
 
 type InputProps = TextInputProps & {
@@ -29,20 +29,26 @@ export const PasswordInput = ({
   errorMessage,
   ...props
 }: InputProps) => {
-
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const isFilled = value;
 
   return (
-    <View 
+    <View
       style={{
         width: "100%",
         gap: theme.spacing.xs,
       }}
     >
       <AppText preset="body1">{"輸入你的密碼"}</AppText>
-      <View style={[styles.container, (isFilled || isFocused) && styles.active , isFocused && styles.focused ,error && styles.errorStyle]}>
+      <View
+        style={[
+          styles.container,
+          (isFilled || isFocused) && styles.active,
+          isFocused && styles.focused,
+          error && styles.errorStyle,
+        ]}
+      >
         <TextInput
           {...props}
           style={[styles.textInput]}
@@ -54,25 +60,47 @@ export const PasswordInput = ({
           secureTextEntry={!isPasswordVisible}
         />
         {isPasswordVisible ? (
-          <IconButton icon="EyeIcon" size="lg" variant="ghost" accessibilityLabel="Hide password" onPress={() => setIsPasswordVisible(false)} iconColor={theme.colors.primaryText}/>
-        ) :(
-          <IconButton icon="EyeSlashIcon" size="lg" variant="ghost" accessibilityLabel="Show password" onPress={() => setIsPasswordVisible(true)} iconColor={theme.colors.primaryText} iconVariant="micro"/>
+          <IconButton
+            icon="EyeIcon"
+            size="lg"
+            variant="ghost"
+            accessibilityLabel="Hide password"
+            onPress={() => setIsPasswordVisible(false)}
+            iconColor={theme.colors.primaryText}
+          />
+        ) : (
+          <IconButton
+            icon="EyeSlashIcon"
+            size="lg"
+            variant="ghost"
+            accessibilityLabel="Show password"
+            onPress={() => setIsPasswordVisible(true)}
+            iconColor={theme.colors.primaryText}
+            iconVariant="micro"
+          />
         )}
       </View>
-      <View style={{height:20}}>
+      <View style={{ height: 20 }}>
         {error ? (
           <View style={styles.errorMessageContainer}>
-            <Icon name="ExclamationTriangleIcon" variant="mini" color={theme.colors.alert} size={24} />
-            <AppText preset="body2" style={styles.errorMessage}>{errorMessage}</AppText>
+            <Icon
+              name="ExclamationTriangleIcon"
+              variant="mini"
+              color={theme.colors.alert}
+              size={24}
+            />
+            <AppText preset="body2" style={styles.errorMessage}>
+              {errorMessage}
+            </AppText>
           </View>
         ) : null}
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  active: { backgroundColor: theme.colors.white},
+  active: { backgroundColor: theme.colors.white },
   focused: { borderColor: theme.colors.strokeActive },
   error: { borderColor: theme.colors.alert },
   disabled: { opacity: 0.5 },
@@ -80,7 +108,7 @@ const styles = StyleSheet.create({
     height: 48,
     width: "100%",
     flexDirection: "row",
-    alignItems: "center", 
+    alignItems: "center",
     gap: theme.spacing.sm,
     borderColor: theme.colors.stroke,
     borderRadius: theme.radius.md,
@@ -106,7 +134,7 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: theme.colors.alert,
-  }
+  },
 });
 
 export default PasswordInput;

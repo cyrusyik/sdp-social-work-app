@@ -5,8 +5,8 @@ import {
   ViewStyle,
   type TextInputProps,
 } from "react-native";
-import { theme } from "@/theme/theme"
-import { Icon , type IconName } from '@/components/ui/atoms/icon'; 
+import { theme } from "@/theme/theme";
+import { Icon, type IconName } from "@/components/ui/atoms/Icon";
 import { useState } from "react";
 
 type InputProps = TextInputProps & {
@@ -21,8 +21,9 @@ type InputProps = TextInputProps & {
   icon?: IconName;
   iconPosition?: string;
   iconColor?: string;
-  iconVariant?: 'outline' | 'solid' | 'mini' | 'micro';
-  pressableIcon?: boolean,
+  iconVariant?: "outline" | "solid" | "mini" | "micro";
+  pressableIcon?: boolean;
+  multiline?: boolean;
 };
 
 export const Input = ({
@@ -38,15 +39,22 @@ export const Input = ({
   iconColor,
   iconVariant,
   pressableIcon,
+  multiline,
   ...props
 }: InputProps) => {
-
   const [isFocused, setIsFocused] = useState(false);
 
   const isFilled = value;
 
   return (
-    <View style={[styles.container, (isFilled || isFocused) && styles.active , isFocused && styles.focused ,error && styles.errorStyle]}>
+    <View
+      style={[
+        styles.container,
+        (isFilled || isFocused) && styles.active,
+        isFocused && styles.focused,
+        error && styles.errorStyle,
+      ]}
+    >
       <TextInput
         {...props}
         style={[styles.textInput]}
@@ -56,22 +64,26 @@ export const Input = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         secureTextEntry={isPassword ? true : false}
+        multiline={multiline}
+        textAlignVertical="top"
       />
-      {icon && iconPosition === 'right' ? <Icon name={icon} color={iconColor} variant={iconVariant} size={24} /> : null}
+      {icon && iconPosition === "right" ? (
+        <Icon name={icon} color={iconColor} variant={iconVariant} size={24} />
+      ) : null}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  active: { backgroundColor: theme.colors.white},
+  active: { backgroundColor: theme.colors.white },
   focused: { borderColor: theme.colors.strokeActive },
   error: { borderColor: theme.colors.alert },
   disabled: { opacity: 0.5 },
   container: {
-    height: 48,
+    minHeight: 48,
     width: "100%",
     flexDirection: "row",
-    alignItems: "center", 
+    alignItems: "center",
     gap: theme.spacing.sm,
     borderColor: theme.colors.stroke,
     borderRadius: theme.radius.md,
@@ -89,7 +101,7 @@ const styles = StyleSheet.create({
   errorStyle: {
     borderColor: theme.colors.alert,
     borderWidth: 1,
-  }
+  },
 });
 
 export default Input;

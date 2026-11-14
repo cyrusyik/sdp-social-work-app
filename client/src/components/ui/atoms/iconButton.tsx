@@ -1,6 +1,12 @@
 // components/ui/atoms/icon-button.tsx
-import { Pressable, StyleSheet, type PressableProps, type ViewStyle, type StyleProp } from "react-native";
-import { Icon, type IconName } from "@/components/ui/atoms/icon";
+import {
+  Pressable,
+  StyleSheet,
+  type PressableProps,
+  type ViewStyle,
+  type StyleProp,
+} from "react-native";
+import { Icon, type IconName } from "@/components/ui/atoms/Icon";
 import { theme } from "@/theme/theme";
 
 type IconButtonVariant = "primary" | "secondary" | "ghost";
@@ -8,11 +14,11 @@ type IconButtonSize = "sm" | "md" | "lg";
 
 type IconButtonProps = Omit<PressableProps, "style" | "children"> & {
   icon: IconName;
-  accessibilityLabel: string;               // required: there is no visible text
+  accessibilityLabel: string; // required: there is no visible text
   variant?: IconButtonVariant;
   size?: IconButtonSize;
   iconVariant?: "outline" | "solid" | "mini" | "micro";
-  iconColor?: string;                       // overrides the variant color
+  iconColor?: string; // overrides the variant color
   style?: StyleProp<ViewStyle>;
 };
 
@@ -36,7 +42,8 @@ export const IconButton = ({
   const { box, icon: iconSize } = DIMENSIONS[size];
 
   const resolvedIconColor =
-    iconColor ?? (variant === "primary" ? theme.colors.white : theme.colors.primary);
+    iconColor ??
+    (variant === "primary" ? theme.colors.white : theme.colors.primary);
 
   // Keep the touch target at least 44x44 even for small buttons
   const hitSlop = Math.max(0, Math.ceil((44 - box) / 2));
@@ -58,7 +65,12 @@ export const IconButton = ({
         style,
       ]}
     >
-      <Icon name={icon} variant={iconVariant} size={iconSize} color={resolvedIconColor} />
+      <Icon
+        name={icon}
+        variant={iconVariant}
+        size={iconSize}
+        color={resolvedIconColor}
+      />
     </Pressable>
   );
 };

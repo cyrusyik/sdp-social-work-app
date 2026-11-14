@@ -1,11 +1,11 @@
 import { View, StyleSheet } from "react-native";
-import Input from "@/components/ui/atoms/textInput";
-import { AppText } from "@/components/ui/atoms/app-text";
+import Input from "@/components/ui/atoms/Input";
+import { AppText } from "@/components/ui/atoms/AppText";
 import { useState } from "react";
-import { Button } from "@/components/ui/atoms/button";
-import { Screen } from "@/components/ui/atoms/screen";
-import { FormField } from "@/components/ui/molecules/formField";
-import { PasswordInput } from "@/components/ui/molecules/passwordInput";
+import { Button } from "@/components/ui/atoms/Button";
+import { Screen } from "@/components/ui/atoms/Screen";
+import { FormField } from "@/components/ui/molecules/FormField";
+import { PasswordInput } from "@/components/ui/molecules/PasswordInput";
 
 export default function LoginScreen() {
   const [staffId, setStaffId] = useState("");
