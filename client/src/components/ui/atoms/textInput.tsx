@@ -5,7 +5,6 @@ import {
   ViewStyle,
   type TextInputProps,
 } from "react-native";
-import { AppText } from '@/components/ui/atoms/app-text';
 import { theme } from "@/theme/theme"
 import { Icon , type IconName } from '@/components/ui/atoms/icon'; 
 import { useState } from "react";
