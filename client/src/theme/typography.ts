@@ -6,4 +6,5 @@ export const typography = {
   body1: 16,
   body2: 14,
   tagline: 12,
+  tabular: 16,
 }

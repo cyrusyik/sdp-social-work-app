@@ -2,7 +2,7 @@ import { StyleSheet, Text, type TextProps } from "react-native";
 import { typography } from "@/theme/typography";
 import { theme } from "@/theme/theme";
 
-const FONTS = {
+export const FONTS = {
   hkRegular: "NotoSansHK-Regular",
   hkSemiBold: "NotoSansHK-SemiBold",
   hkBold: "NotoSansHK-Bold",

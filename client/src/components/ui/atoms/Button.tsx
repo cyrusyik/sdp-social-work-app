@@ -5,7 +5,7 @@ import {
 } from "react-native";
 
 import { AppText } from "@/components/ui/atoms/AppText";
-import { Icon, type IconName } from "@/components/ui/atoms/icon";
+import { Icon, type IconName } from "@/components/ui/atoms/Icon";
 import { theme } from "@/theme/theme";
 
 type ButtonProps = PressableProps & {

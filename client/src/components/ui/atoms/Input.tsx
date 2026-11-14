@@ -21,6 +21,7 @@ type InputProps = TextInputProps & {
   icon?: IconName;
   iconPosition?: string;
   iconColor?: string;
+  iconSize?: number;
   iconVariant?: "outline" | "solid" | "mini" | "micro";
   pressableIcon?: boolean;
   multiline?: boolean;
@@ -38,7 +39,9 @@ export const Input = ({
   iconPosition,
   iconColor,
   iconVariant,
+  iconSize=24,
   pressableIcon,
+  disabled,
   multiline,
   ...props
 }: InputProps) => {
@@ -55,6 +58,9 @@ export const Input = ({
         error && styles.errorStyle,
       ]}
     >
+      {icon && iconPosition === "left" ? (
+        <Icon name={icon} color={iconColor} variant={iconVariant} size={iconSize} />
+      ) : null}
       <TextInput
         {...props}
         style={[styles.textInput]}
@@ -64,11 +70,13 @@ export const Input = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         secureTextEntry={isPassword ? true : false}
+        editable={disabled}
+        placeholderTextColor={disabled ? theme.colors.placeholderInactive : theme.colors.placeholderActive}
         multiline={multiline}
         textAlignVertical="top"
       />
       {icon && iconPosition === "right" ? (
-        <Icon name={icon} color={iconColor} variant={iconVariant} size={24} />
+        <Icon name={icon} color={iconColor} variant={iconVariant} size={iconSize} />
       ) : null}
     </View>
   );
