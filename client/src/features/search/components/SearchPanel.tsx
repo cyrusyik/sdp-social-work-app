@@ -51,8 +51,8 @@ export const SearchPanel = ({
     <View style={styles.container}>
       <SegmentedControl options={TAB_OPTIONS} value={tab} onChange={onTabChange} />
 
-      {tab === "forms" ? (
-        <>
+      {tab === "form" ? (
+        <View>
           <SelectFormDropdown
             placeholder="選擇表格"
             valueLabel={formOptions.find((o) => o.value === formId)?.label}
@@ -67,7 +67,7 @@ export const SearchPanel = ({
             onSelect={onFormChange}
             onClose={() => setSheetOpen(false)}
           />
-        </>
+        </View>
       ) : (
         <SearchInput
           placeholder="搜尋案主姓名或英文名..."
@@ -82,7 +82,7 @@ export const SearchPanel = ({
 
       {advancedOpen ? <View style={styles.advanced}>{children}</View> : null}
 
-      <Button label="搜尋" icon="MagnifyingGlassIcon" loading={loading} onPress={onSearch} accessibilityLabel="Submit Button"/>
+      <Button label="搜尋" icon="MagnifyingGlassIcon" loading={loading} onPress={onSearch}/>
     </View>
   );
 };

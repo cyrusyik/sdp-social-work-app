@@ -21,7 +21,7 @@ export const SearchScreen = () => {
         items={s.visible}
         loading={s.loading}
         emptyText={emptyText}
-        searchType={tab}
+        searchType={s.tab}
         onItemPress={(item) => console.log("open", item.id)}   // TODO: router.push to the record
         header={
           <>
@@ -43,8 +43,8 @@ export const SearchScreen = () => {
 
             {s.hasSearched ? (
               <ResultHeader
-                statuses={s.statuses}
-                onStatusesChange={s.setStatuses}
+                status={s.status}
+                onStatusChange={s.setStatus}
                 sort={s.sort}
                 onSortChange={s.setSort}
                 count={s.visible.length}

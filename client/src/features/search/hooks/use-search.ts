@@ -6,14 +6,14 @@ import { filterByStatus, sortResults } from "@/features/search//utils/util";
 
 export const useSearch = () => {
   // search inputs
-  const [tab, setTab] = useState<SearchTab>("forms");
+  const [tab, setTab] = useState<SearchTab>("form");
   const [formId, setFormId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   // results + display options
   const [results, setResults] = useState<SearchResult[]>([]);
-  const [statuses, setStatuses] = useState<Status[]>([]);
+  const [status, setStatus] = useState<Status | null>(null);
   const [sort, setSort] = useState<SortKey>("updated-desc");
 
   // request state
@@ -46,8 +46,8 @@ export const useSearch = () => {
 
   // derived: never stored, so it can't go out of sync
   const visible = useMemo(
-    () => sortResults(filterByStatus(results, statuses), sort),
-    [results, statuses, sort]
+    () => sortResults(filterByStatus(results, status), sort),
+    [results, status, sort]
   );
 
   return {
@@ -55,7 +55,7 @@ export const useSearch = () => {
     formId, setFormId,
     query, setQuery,
     advancedOpen, toggleAdvanced,
-    statuses, setStatuses,
+    status, setStatus,
     sort, setSort,
     visible, loading, hasSearched, error,
     search,

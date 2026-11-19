@@ -16,9 +16,6 @@ type ButtonProps = PressableProps & {
   loading?: boolean;
   fullWidth?: boolean;
   iconVariant?: "outline" | "solid" | "mini" | "micro";
-  accessibilityRole?: string;
-  accessibilityLabel: string;
-  accessibilityState?: string;
 };
 
 export function Button({
@@ -83,9 +80,9 @@ export function Button({
         },
         style as object,
       ]}
-      accessibilityLabel={accessibilityLabel}
       accessibilityRole={accessibilityRole}
-      accessibilityState={accessibilityState}
+      accessibilityLabel={accessibilityLabel ?? label}
+      accessibilityState={{ ...accessibilityState, disabled: isDisabled, busy: loading }}
       {...props}
     >
       {buttonIcon && iconPosition === "left" ? (

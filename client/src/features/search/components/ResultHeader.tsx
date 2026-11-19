@@ -8,16 +8,16 @@ import { SORT_OPTIONS, STATUS_OPTIONS } from "@/features/search/utils/constants"
 import type { SortKey, Status } from "@/features/search/utils/types";
 
 type ResultsToolbarProps = {
-  statuses: Status[];
-  onStatusesChange: (value: Status[]) => void;
+  status: Status | null;
+  onStatusChange: (value: Status | null) => void;
   sort: SortKey;
   onSortChange: (value: SortKey) => void;
   count: number;
 };
 
 export const ResultHeader = ({
-  statuses,
-  onStatusesChange,
+  status,
+  onStatusChange,
   sort,
   onSortChange,
   count,
@@ -25,10 +25,9 @@ export const ResultHeader = ({
   <View style={styles.container}>
     <View style={styles.row}>
       <ChipGroup
-        multiple
         options={STATUS_OPTIONS}
-        value={statuses}
-        onChange={onStatusesChange}
+        value={status}
+        onChange={onStatusChange}
         style={styles.chips}
       />
       <SortDropdown options={SORT_OPTIONS} value={sort} onChange={onSortChange} />
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
   container: { gap: theme.spacing.sm, paddingBottom: theme.spacing.sm },
   row: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: theme.spacing.sm },
   chips: { flexShrink: 1 },
-  count: { fontSize: theme.typography.caption, color: theme.colors.textSecondary },
+  count: { fontSize: theme.typography.tagline, color: theme.colors.secondaryText },
 });
 
 export default ResultHeader;

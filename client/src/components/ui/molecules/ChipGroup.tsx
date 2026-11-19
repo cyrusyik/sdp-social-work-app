@@ -1,6 +1,6 @@
 import { Chip } from "@/components/ui/atoms/Chip";
 import { useState } from "react";
-import { View , StyleSheet} from "react-native";
+import { View , StyleSheet, type StyleProp, type ViewStyle} from "react-native";
 import { theme } from "@/theme/theme";
 
 export type ChipOption<T extends string> = {
@@ -13,6 +13,7 @@ type ChipGroupProps<T extends string> = {
   value?: T | null;                       // controlled
   defaultValue?: T | null;                // uncontrolled
   onChange?: (value: T | null) => void;
+  style?: StyleProp<ViewStyle>; 
 };
 
 export function ChipGroup<T extends string>({ options, value, defaultValue = null, onChange }: ChipGroupProps<T>) {
