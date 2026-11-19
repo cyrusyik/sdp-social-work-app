@@ -11,7 +11,7 @@ type BottomTabBarProps = Parameters<TabBarRenderer>[0];
 const TABS: Record<string, {label: string; icon: IconName}> = {
   search: { label: "搜尋", icon: "MagnifyingGlassIcon" },
   create: { label: "紀錄", icon: "PlusCircleIcon" },
-  profile: { label: "個人", icon: "UserIcon" },
+  profile: { label: "個人", icon: "UserCircleIcon" },
 }
 
 export const TabBar = ({ state, emitter, navigateToTab, insets }: BottomTabBarProps) => {
@@ -51,6 +51,8 @@ export const TabBar = ({ state, emitter, navigateToTab, insets }: BottomTabBarPr
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    justifyContent: "center",
+    gap: theme.spacing.xl,
     backgroundColor: theme.colors.white,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: theme.colors.stroke,

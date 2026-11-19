@@ -27,7 +27,7 @@ export const TabBarItem = ({
       accessibilityState={{ selected: focused }}
       style={({ pressed }) => [styles.container, pressed && styles.pressed]}
     >
-      <Icon name={icon} variant="micro" size={24} color={focusedColor} />
+      <Icon name={icon} variant={focused ? "micro" : "outline"} size={24} color={focusedColor} />
       <AppText preset="tagline" style={{ color: focusedColor }}>
         {label}
       </AppText>
@@ -37,7 +37,7 @@ export const TabBarItem = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // each item takes an equal share of the bar
+    paddingHorizontal: theme.spacing.xl,
     alignItems: "center",
     justifyContent: "center",
     gap: 2,

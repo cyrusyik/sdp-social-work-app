@@ -9,6 +9,7 @@ type CheckboxProps = Omit<PressableProps, "style" | "children"> & {
   checked?: boolean;
   error?: boolean;
   style?: StyleProp<ViewStyle>;
+  disabledBox?: boolean;
 };
 
 const BOX = 20;
@@ -19,6 +20,7 @@ export const AppCheckbox = ({
   error = false,
   disabled,
   style,
+  disabledBox,
   ...props
 }: CheckboxProps) => {
   return (
@@ -41,13 +43,15 @@ export const AppCheckbox = ({
           styles.box,
           checked && styles.boxChecked,
           error && styles.boxError,        // after checked so error wins
+          disabledBox && styles.disabledBox,
+          (disabled && !checked) && styles.disabledBox,
         ]}
       >
         {checked ? (
           <Icon name="CheckIcon" variant="mini" size={16} color={theme.colors.white} />
         ) : null}
       </View>
-      {label ? <AppText preset="body1" style={styles.label}>{label}</AppText> : null}
+        {label ? <AppText preset="body1" style={styles.label}>{label}</AppText> : null}
     </Pressable>
   );
 };
@@ -76,6 +80,9 @@ const styles = StyleSheet.create({
   label: { flexShrink: 1, fontSize: theme.typography.body1 },
   pressed: { opacity: 0.7 },
   disabled: { opacity: 0.4 },
+  disabledBox: {
+    backgroundColor: theme.colors.stroke
+  }
 });
 
 export default AppCheckbox;

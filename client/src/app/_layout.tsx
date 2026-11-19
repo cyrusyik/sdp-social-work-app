@@ -13,6 +13,7 @@ import {
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const RootLayout = () => {
   const [hkFontsLoaded, hkFontError] = useNotoSansHKFonts({
@@ -37,9 +38,11 @@ const RootLayout = () => {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(main)" />
-    </Stack>
+    <GestureHandlerRootView style={{flex:1}}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(main)" />
+      </Stack>
+    </GestureHandlerRootView>
   );
 };
 

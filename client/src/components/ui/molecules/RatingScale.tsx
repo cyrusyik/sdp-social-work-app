@@ -5,22 +5,27 @@ import { theme } from "@/theme/theme";
 import { Icon } from "../atoms/Icon";
 import { AppText } from "../atoms/AppText";
 
-type ChipOption<T extends number> = {
+export type RatingScaleOption<T extends number> = {
   value: T;
+  selected: boolean;
 };
 
 type RatingScaleProps<T extends number> = {
-  options: ChipOption<T>[];
+  label: string;
+  options: RatingScaleOption<T>[];
   value?: T | null; // controlled
   defaultValue?: T | null; // uncontrolled
   onChange?: (value: T | null) => void;
+  disabled?: boolean;
 };
 
 export function RatingScale<T extends number>({
+  label,
   options,
   value,
   defaultValue = null,
   onChange,
+  disabled,
 }: RatingScaleProps<T>) {
   const [internal, setInternal] = useState<T | null>(defaultValue);
   const current = value !== undefined ? value : internal;
@@ -32,14 +37,16 @@ export function RatingScale<T extends number>({
   };
 
   return (
-    <View>
-      <View style={styles.row}>
+    <View style={styles.container}>
+      <AppText preset="body2">{label}</AppText>
+      <View style={[styles.row, disabled && {backgroundColor: theme.colors.background}]}>
         {options.map((o) => (
           <RatingOption
             key={o.value}
             value={o.value}
-            selected={current === o.value}
-            onPress={() => handlePress(o.value)}
+            selected={disabled ? o.selected : current === o.value}
+            onPress={disabled ? ()=>null : () => handlePress(o.value)}
+            style={disabled && !o.selected && {backgroundColor: theme.colors.background}}
           />
         ))}
       </View>
@@ -78,6 +85,9 @@ export function RatingScale<T extends number>({
 }
 
 const styles = StyleSheet.create({
+  container:{
+    gap: theme.spacing.sm,
+  },
   row: {
     flexDirection: "row",
     alignContent: "center",
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
-    margin: theme.spacing.md,
+    marginHorizontal: theme.spacing.md,
   },
   label: {
     flexDirection: "row",
