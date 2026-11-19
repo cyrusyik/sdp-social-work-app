@@ -3,7 +3,7 @@ import { useState } from "react";
 import { View , StyleSheet} from "react-native";
 import { theme } from "@/theme/theme";
 
-type ChipOption<T extends string> = {
+export type ChipOption<T extends string> = {
   value: T;
   label: string;
 };
